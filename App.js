@@ -1,11 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Alert, StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
+  const [ok, setOk] = useState(false)
+
+  const showAlert = () => {
+    Alert.alert(
+      "Title",
+      "test message",
+      [
+       {
+          text: "OK",
+          onPress: () => setOk(true)
+       },
+       {
+        text: "Cancel",
+        onPress: () => setOk(false)
+       }
+      ]
+    )
+  }
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Button title={'Open dia'} onPress={showAlert}></Button>
+      <Text>{ok===true ? 'ok' : 'cancel'}</Text>
     </View>
   );
 }
